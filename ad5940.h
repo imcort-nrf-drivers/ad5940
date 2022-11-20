@@ -39,13 +39,13 @@
 #define ADI_Print printf   /**< Select the method to print out debug message */
 #endif
 
-#if defined(CHIPSEL_M355) && defined(CHIPSEL_594X)
-#error Please select the correct chip by define CHIPSEL_M355 or CHIPSEL_594X.
-#endif
+//#if defined(CHIPSEL_M355) && defined(CHIPSEL_594X)
+//#error Please select the correct chip by define CHIPSEL_M355 or CHIPSEL_594X.
+//#endif
 
-#if !defined(CHIPSEL_M355) && !defined(CHIPSEL_594X)
-#error Please select the correct chip by define CHIPSEL_M355 or CHIPSEL_594X.
-#endif
+//#if !defined(CHIPSEL_M355) && !defined(CHIPSEL_594X)
+//#error Please select the correct chip by define CHIPSEL_M355 or CHIPSEL_594X.
+//#endif
 
 /** 
  * @cond
