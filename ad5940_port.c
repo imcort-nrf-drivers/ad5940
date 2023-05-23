@@ -10,7 +10,7 @@
 
 #include "transfer_handler.h"
 
-volatile static uint8_t ucInterrupted = 0;       /* Flag to indicate interrupt occurred */
+volatile uint8_t ucInterrupted = 0;       /* Flag to indicate interrupt occurred */
 
 /**
 	@brief Using SPI to transmit N bytes and return the received bytes. This function targets to 
@@ -76,7 +76,7 @@ uint32_t AD5940_GetMCUIntFlag(void)
 
 uint32_t AD5940_ClrMCUIntFlag(void)
 {
-    NVIC_ClearPendingIRQ(GPIOTE_IRQn);
+    //NVIC_ClearPendingIRQ(GPIOTE_IRQn);
 	ucInterrupted = 0;
 	return 1;
 }
@@ -89,7 +89,7 @@ void AD5940_interrupt_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t ac
     if((pin == AD5940_INT_PIN) && (action == NRF_GPIOTE_POLARITY_HITOLO))
     {
         //NVIC_ClearPendingIRQ(GPIOTE_IRQn);
-        Debug("INT");
+        //Debug("INT");
         ucInterrupted = 1;
     }
     
@@ -101,6 +101,7 @@ uint32_t AD5940_MCUResourceInit(void *pCfg)
 	spi_init();
     pinMode(AD5940_SS_PIN, OUTPUT);
     pinMode(AD5940_RST_PIN, OUTPUT);
+    pinMode(AD5940_LED, OUTPUT);
     
     attachInterrupt(AD5940_INT_PIN, AD5940_interrupt_handler, FALLING);
 
