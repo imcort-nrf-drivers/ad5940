@@ -24,7 +24,7 @@ volatile uint8_t ucInterrupted = 0;       /* Flag to indicate interrupt occurred
 	@return None.
 **/
 
-void AD5940_ReadWriteNBytes(unsigned char *pSendBuffer,unsigned char *pRecvBuff,unsigned long length)
+void AD5940_ReadWriteNBytes(unsigned char *pSendBuffer, unsigned char *pRecvBuff, unsigned long length)
 {
     
     if (length == 1)
@@ -50,12 +50,16 @@ void AD5940_CsSet(void)
 
 void AD5940_RstSet(void)
 {
-	digitalWrite(AD5940_RST_PIN, 1);
+    #ifdef AD5940_RST_PIN
+        digitalWrite(AD5940_RST_PIN, 1);
+    #endif
 }
 
 void AD5940_RstClr(void)
 {
-	digitalWrite(AD5940_RST_PIN, 0);
+    #ifdef AD5940_RST_PIN
+        digitalWrite(AD5940_RST_PIN, 0);
+    #endif
 }
 
 void AD5940_Delay10us(uint32_t time)
@@ -100,8 +104,10 @@ uint32_t AD5940_MCUResourceInit(void *pCfg)
 	
 	spi_init();
     pinMode(AD5940_SS_PIN, OUTPUT);
-    pinMode(AD5940_RST_PIN, OUTPUT);
-    pinMode(AD5940_LED, OUTPUT);
+    
+    #ifdef AD5940_RST_PIN
+        pinMode(AD5940_RST_PIN, OUTPUT);
+    #endif
     
     attachInterrupt(AD5940_INT_PIN, AD5940_interrupt_handler, FALLING);
 

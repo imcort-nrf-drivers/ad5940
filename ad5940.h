@@ -16,6 +16,9 @@
 #include "math.h"
 #include "string.h"
 #include "stdio.h"
+
+#include "transfer_handler.h"
+
 /** @addtogroup AD5940_Library
   * @{
   */
@@ -33,19 +36,19 @@
 #define AD5940LIB_VER_PATCH       1    /**< Path number */
 #define AD5940LIB_VER   (AD5940LIB_VER_MAJOR<<16)|(AD5940LIB_VER_MINOR<<8)|(AD5940LIB_VER_PATCH)
 
-//#define ADI_DEBUG   /**< Comment this line to remove debug info. */
+#define ADI_DEBUG   /**< Comment this line to remove debug info. */
 
 #ifdef ADI_DEBUG
-#define ADI_Print printf   /**< Select the method to print out debug message */
+#define ADI_Print Debug   /**< Select the method to print out debug message */
 #endif
 
-#if defined(CHIPSEL_M355) && defined(CHIPSEL_594X)
-#error Please select the correct chip by define CHIPSEL_M355 or CHIPSEL_594X.
-#endif
+//#if defined(CHIPSEL_M355) && defined(CHIPSEL_594X)
+//#error Please select the correct chip by define CHIPSEL_M355 or CHIPSEL_594X.
+//#endif
 
-#if !defined(CHIPSEL_M355) && !defined(CHIPSEL_594X)
-#error Please select the correct chip by define CHIPSEL_M355 or CHIPSEL_594X.
-#endif
+//#if !defined(CHIPSEL_M355) && !defined(CHIPSEL_594X)
+//#error Please select the correct chip by define CHIPSEL_M355 or CHIPSEL_594X.
+//#endif
 
 /** 
  * @cond
