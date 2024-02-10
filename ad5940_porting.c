@@ -10,6 +10,8 @@
 
 #include "transfer_handler.h"
 
+//SPI MODE 0
+
 volatile uint8_t ucInterrupted = 0;       /* Flag to indicate interrupt occurred */
 
 /**
